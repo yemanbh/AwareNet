@@ -1,0 +1,39 @@
+#*************** job configuration*****************************************
+
+#BSUB -J "XXXX"
+#BSUB -P ID
+#BSUB -q AAAA
+#BSUB -e /path/to/log/Logs/train.%J.%I.errors
+#BSUB -o /path/to/log/Logs/train.%J.%I.outputs
+#BSUB -W 100:00
+#BSUB -R "rusage[ngpus_excl_p=1]"
+#BSUB -u your-email
+
+#**************************** input and output directories*****************
+
+output_dir=/path/to/models
+input_dir=/path/to/npy_files
+home_dir=path/to/code_and_data
+# -1 or $LSB_JOBINDEX or an integer
+config_index=-1 #
+echo "*************Printing time and other details ****************************"
+
+echo "LSB_BATCH_JID:" ${LSB_BATCH_JID}
+echo "current working directory:" ${PWD}
+#echo "created on:" $(date '+%Y-%m-%d')
+
+echo "created by:$USER"
+echo "created on: $(date)"
+
+echo "output_dir:$output_dir"
+#echo "input_dir:$input_dir"
+
+echo "********************************************************************************"
+
+#**************************** job execution using singularity container *************************
+
+singularity exec --nv \
+	--bind "$home_dir:$home_dir" \
+	docker://yhagos/tf2gpu:concordenet /usr/local/bin/python $home_dir/main_c.py -o $output_dir -d $input_dir --cluster -n $config_index
+
+echo "DONE!!"
