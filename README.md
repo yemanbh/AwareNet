@@ -11,7 +11,7 @@ relative abundance of cell types in the training data.
 3) We implemented and compared performance of different
 cell weighting strategies.
 
-It is published in ISBI 20202 and the full manuscript is available [here](https://ieeexplore.ieee.org/document/9433994).
+It is published in ISBI 2020 and the full manuscript is available [here](https://ieeexplore.ieee.org/document/9433994).
 
 ## Libraries required
 - numpy==1.17.5
@@ -25,7 +25,7 @@ It is published in ISBI 20202 and the full manuscript is available [here](https:
 - See how to use them inside the cell detection (CD) and cell classification (CC) folders
 
 ## Training data preparation
-![](images/trainingdata_v0-01.png) ""
+![](images/trainingdata_v0-01.png)
 
 ## Implemetation flow chart
 ![](images/model_v3-01.png "ConCORDe-Net workflow")
